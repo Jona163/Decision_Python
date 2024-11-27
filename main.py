@@ -21,3 +21,5 @@ class DecisionTree:
         self.root = None
 
     def fit(self, X, y):
+        self.n_features = X.shape[1] if self.n_features is None else min(X.shape[1], self.n_features)
+        self.root = self._grow_tree(X, y)
