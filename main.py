@@ -35,3 +35,6 @@ class DecisionTree:
 
         # Selección aleatoria de características
         feat_idxs = np.random.choice(n_feats, self.n_features, replace=False)
+
+        # Encuentra la mejor división
+        best_feature, best_thresh = self._best_split(X, y, feat_idxs)
