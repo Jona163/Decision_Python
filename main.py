@@ -104,3 +104,5 @@ class DecisionTree:
 
         if x[node.feature] <= node.threshold:
             return self._traverse_tree(x, node.left)
+       else:
+            return self._traverse_tree(x, node.right)
