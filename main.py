@@ -52,3 +52,12 @@ class DecisionTree:
         for feat_idx in feat_idxs:
             X_column = X[:, feat_idx]
             thresholds = np.unique(X_column)
+
+            for threshold in thresholds:
+                gain = self._information_gain(y, X_column, threshold)
+                if gain > best_gain:
+                    best_gain = gain
+                    split_idx = feat_idx
+                    split_threshold = threshold
+
+        return split_idx, split_threshold
