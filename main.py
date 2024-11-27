@@ -78,3 +78,8 @@ class DecisionTree:
 
         # Ganancia de información
         return parent_entropy - child_entropy
+
+    def _split(self, X_column, split_thresh):
+        left_idxs = np.argwhere(X_column <= split_thresh).flatten()
+        right_idxs = np.argwhere(X_column > split_thresh).flatten()
+        return left_idxs, right_idxs
