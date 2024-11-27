@@ -69,3 +69,12 @@ class DecisionTree:
         # Evita divisiones vacías
         if len(left_idxs) == 0 or len(right_idxs) == 0:
             return 0
+
+        # Entropía ponderada de los hijos
+        n = len(y)
+        n_l, n_r = len(left_idxs), len(right_idxs)
+        e_l, e_r = self._entropy(y[left_idxs]), self._entropy(y[right_idxs])
+        child_entropy = (n_l / n) * e_l + (n_r / n) * e_r
+
+        # Ganancia de información
+        return parent_entropy - child_entropy
