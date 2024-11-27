@@ -61,3 +61,11 @@ class DecisionTree:
                     split_threshold = threshold
 
         return split_idx, split_threshold
+
+    def _information_gain(self, y, X_column, threshold):
+        parent_entropy = self._entropy(y)
+        left_idxs, right_idxs = self._split(X_column, threshold)
+
+        # Evita divisiones vacías
+        if len(left_idxs) == 0 or len(right_idxs) == 0:
+            return 0
