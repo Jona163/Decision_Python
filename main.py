@@ -38,3 +38,9 @@ class DecisionTree:
 
         # Encuentra la mejor división
         best_feature, best_thresh = self._best_split(X, y, feat_idxs)
+
+        # Crea nodos hijos
+        left_idxs, right_idxs = self._split(X[:, best_feature], best_thresh)
+        left = self._grow_tree(X[left_idxs, :], y[left_idxs], depth + 1)
+        right = self._grow_tree(X[right_idxs, :], y[right_idxs], depth + 1)
+        return Node(feature=best_feature, threshold=best_thresh, left=left, right=right)
