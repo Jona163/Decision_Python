@@ -27,3 +27,8 @@ class DecisionTree:
     def _grow_tree(self, X, y, depth=0):
         n_samples, n_feats = X.shape
         n_labels = len(np.unique(y))
+
+        # Criterios para detener la división
+        if depth >= self.max_depth or n_labels == 1 or n_samples < self.min_samples_split:
+            leaf_value = self._most_common_label(y)
+            return Node(value=leaf_value)
