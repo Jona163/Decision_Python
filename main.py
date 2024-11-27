@@ -79,6 +79,17 @@ class DecisionTree:
         # Ganancia de información
         return parent_entropy - child_entropy
 
+    
+    def _entropy(self, y):
+        hist = np.bincount(y)
+        ps = hist / len(y)
+        return -np.sum([p * np.log(p) for p in ps if p > 0])
+
+    def _most_common_label(self, y):
+        counter = Counter(y)
+        return counter.most_common(1)[0][0]
+
+
     def _split(self, X_column, split_thresh):
         left_idxs = np.argwhere(X_column <= split_thresh).flatten()
         right_idxs = np.argwhere(X_column > split_thresh).flatten()
