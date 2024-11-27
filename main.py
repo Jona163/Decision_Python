@@ -9,3 +9,6 @@ class Node:
         self.left = left
         self.right = right
         self.value = value
+
+    def is_leaf_node(self):
+        return self.value is not None
